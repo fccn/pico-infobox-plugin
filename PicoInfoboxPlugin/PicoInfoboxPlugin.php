@@ -40,12 +40,19 @@ final class PicoInfoboxPlugin extends AbstractPicoPlugin
     public function onPageRendering(Twig_Environment &$twig, array &$twigVariables, &$templateName) {
         // Set plugins url
         $this->plugins_url = $twigVariables['plugins_url'];
+    }
 
+    /**
+	 * Triggered after Pico has prepared the raw file contents for parsing
+	 *
+	 * @see	Pico::parseFileContent()
+	 * @see	DummyPlugin::onContentParsed()
+	 * @param  string &$content prepared file contents for parsing
+	 * @return void
+	 */
+	public function onContentPrepared(&$content) {
         // Search for shortcodes allover the content
-        preg_match_all('#\[(info|tip|note|warning) *(.*?)\](.*?)\[/(info|tip|note|warning)\]#s', $twigVariables['content'], $matches);
-
-        // Get page content
-        $new_content = &$twigVariables['content'];
+        preg_match_all('#\[(info|tip|note|warning) *(.*?)\](.*?)\[/(info|tip|note|warning)\]#s', $content, $matches);
 
         if (count($matches) > 0) {
             // Add the style tag to format the boxes
@@ -83,10 +90,10 @@ final class PicoInfoboxPlugin extends AbstractPicoPlugin
                 $target = "#" . preg_quote($matches[0][$i]) . "#s";
 
                 // Replace the match with html in the content
-                $new_content = preg_replace($target, $this->generateContent($options), $new_content, 1);
+                $content = preg_replace($target, $this->generateContent($options), $content, 1);
             }
         }
-    }
+	}
 
     /**
 	 * Triggered after Pico has rendered the page
