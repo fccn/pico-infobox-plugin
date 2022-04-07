@@ -10,10 +10,10 @@ Place the `PicoInfoboxPlugin` folder into the PicoCMS plugins folder.
 Information boxes can be created as following:
 
 ```
-[info title=Info|icon=true]This is an **info** box[/info]
-[tip title=Tip|icon=true]This is a **tip** box[/tip]
-[note title=Note|icon=true]This is a **note** box[/note]
-[warning title=Warning|icon=true]This is a **warning** box[/warning]
+[info title=Info|icon=true]This is an <b>info</b> box[/info]
+[tip title=Tip|icon=true]This is a <b>tip</b> box[/tip]
+[note title=Note|icon=true]This is a <b>note</b> box[/note]
+[warning title=Warning|icon=true]This is a <b>warning</b> box[/warning]
 ```
 
 Choose from `info`, `tip`, `note`, or `warning` to create a box.
